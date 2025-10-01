@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link
+		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+		<!-- Font Awesome -->
+		<link
+		rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+		<!-- ANIMATE CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+		<link rel="stylesheet" href="{{ asset('styles/app.css') }}">
+		<link rel="stylesheet" href="{{ asset('styles/task.css') }}"> {% block stylesheets %}{% endblock %}
+
+		<!-- TOASTR -->
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+
+		{% block javascripts %}
+			{% block importmap %}
+				{{ importmap('app') }}
+			{% endblock %}
+		{% endblock %}
+	</head>
+	<body>
+
+		<header class="navbar">
+			<div class="container">
+				<h1 class="brand">David Ruiz - Task Manager</h1>
+			</div>
+		</header>
+
+		<main class="main-content">
+			<div class="container content-container"> {% block content %}{% endblock %}
+				</div>
+
+				<div class="info-tab" onclick="toggleModal()">
+					<i class="fa-solid fa-circle-info"></i>
+					<span class="tab-text">Info</span>
+				</div>
+
+				<div class="info-modal" id="infoModal">
+					<div class="modal-content">
+						<button class="modal-close" onclick="toggleModal()">
+							<i class="fa-solid fa-xmark"></i>
+						</button>
+						<h2 class="modal-title">
+							<i class="fa-solid fa-code"></i>
+							Especificaciones del Proyecto
+						</h2>
+						<ul class="modal-specs">
+							<li>
+								<i class="fa-solid fa-bolt"></i>
+								Symfony 7 + PHP 8.2</li>
+							<li>
+								<i class="fa-solid fa-database"></i>
+								Doctrine ORM + MySQL</li>
+							<li>
+								<i class="fa-solid fa-lock"></i>
+								Login y Registro con Validaciones</li>
+							<li>
+								<i class="fa-solid fa-clipboard-check"></i>
+								CRUD de Tareas completo</li>
+							<li>
+								<i class="fa-solid fa-mobile-screen-button"></i>
+								Responsive y Mobile-first</li>
+							<li>
+								<i class="fa-solid fa-paint-brush"></i>
+								Diseño y animaciones con CSS puro</li>
+						</ul>
+					</div>
+				</div>
+			</main>
+
+		</body>
+
+		<script>
+			function toggleModal() {
+const modal = document.getElementById("infoModal");
+modal.classList.toggle("active");
+}
+		</script>
+	</html>

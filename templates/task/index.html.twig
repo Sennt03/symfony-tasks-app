@@ -1,0 +1,88 @@
+{% extends 'task/layout.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('styles/task.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('js/task.js') }}"></script>
+{% endblock %}
+
+{% block title %}Mis Tareas{% endblock %}
+
+{% block content %}
+<div class="task-container">
+    <div class="task-header">
+        <input 
+            type="text" 
+            id="task-search" 
+            placeholder="Buscar tarea..." 
+            class="task-search"
+            onkeyup="filterTasks()" 
+        />
+        <a href="{{ path('app_task_new') }}" class="btn-add">
+            Agregar
+        </a>
+    </div>
+
+    <div class="table-container">
+        <table id="task-table">
+            <thead>
+                <tr>
+                    <th onclick="sortTable('id')">ID <i class="fa-solid fa-arrow-up-wide-short"></i></th>
+                    <th onclick="sortTable('title')">Título <i class="fa-solid fa-arrow-up-wide-short"></i></th>
+                    <th onclick="sortTable('description')">Descripción <i class="fa-solid fa-arrow-up-wide-short"></i></th>
+                    <th onclick="sortTable('isCompleted')">Completada <i class="fa-solid fa-arrow-up-wide-short"></i></th>
+                    <th onclick="sortTable('createdAt')">Creada <i class="fa-solid fa-arrow-up-wide-short"></i></th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="task-tbody">
+            {% for task in tasks %}
+                <tr>
+                    {# <td>{{ task.id }}</td> #}
+                    <td>{{ loop.index }}</td>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>
+                        {% if task.isCompleted %}
+                            <span class="badge success">Sí</span>
+                        {% else %}
+                            <span class="badge danger">No</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ task.createdAt ? task.createdAt|date('Y-m-d H:i') : '' }}</td>
+                    <td class="actions">
+                        <div class="dropdown">
+                            <i class="fa-solid fa-ellipsis-vertical" onclick="toggleDropdown(this)"></i>
+                            <div class="dropdown-content">
+                                <a href="{{ path('app_task_show', {'id': task.id}) }}">Ver</a>
+                                <a href="{{ path('app_task_edit', {'id': task.id}) }}">Editar</a>
+                                {# <a href="#" onclick="deleteTask({{ task.id }})">Eliminar</a> #}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6" class="empty">No hay tareas creadas. ¡Agrega una nueva!</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-footer">
+        <span id="task-count">{{ tasks|length }} resultados</span>
+        <div class="pagination">
+            <button onclick="prevPage()"><i class="fa-solid fa-angle-left"></i></button>
+            <button onclick="nextPage()"><i class="fa-solid fa-angle-right"></i></button>
+            <select id="page-size" onchange="changePageSize()">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+            </select>
+        </div>
+    </div>
+</div>
+{% endblock %}

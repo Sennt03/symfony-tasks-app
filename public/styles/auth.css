@@ -1,0 +1,171 @@
+.auth-layout {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: url("/assets/fondo_auth.jpg") no-repeat center center/cover;
+    position: relative;
+    font-family: "Poppins", sans-serif;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(15, 18, 28, 0.95) 50%,
+        rgba(15, 18, 28, 0.7) 100%
+    );
+    z-index: 0;
+}
+
+.auth-content {
+    position: relative;
+    z-index: 1;
+    margin-left: 5%;
+    width: 450px;
+    padding: 40px;
+    color: #fff;
+}
+
+.btn-cancel {
+    background: #2a3248;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-cancel:hover {
+    background: #2a3248c2;
+}
+
+/* Animaciones puras CSS */
+.animate-fadeInDown {
+    animation: fadeInDown 0.7s ease forwards;
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.7s ease forwards;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.header p {
+    margin: 10px 0 30px;
+    font-size: 14px;
+    color: #bbb;
+}
+
+.header p a {
+    color: #4da6ff;
+    text-decoration: none;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 40px 12px 15px;
+    border: none;
+    border-radius: 12px;
+    background: #1f2535;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group input:focus {
+    background: #2a3248;
+    box-shadow: 0 0 0 2px #4da6ff;
+}
+
+.form-group i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    cursor: pointer;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-create {
+    background: #4da6ff;
+    color: #fff;
+    font-weight: 600;
+}
+
+.btn-create:hover {
+    background: #3691eb;
+}
+
+.div-error {
+    background: #cc00006e;
+}
+
+.div-success,
+.div-error {
+    display: block;
+    margin: 20px 0 0;
+    color: #fff;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 5px 15px;
+    font-size: 13px;
+    position: relative;
+    top: -15px;
+}
+
+.div-success {
+    background: #3499156e;
+}

@@ -1,0 +1,47 @@
+{% extends 'task/layout.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('styles/form.css') }}">
+{% endblock %}
+
+{% block title %}Editar Tarea{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-header">
+        <h2>Editar Tarea</h2>
+        <a href="{{ path('app_task_index') }}" class="btn-back">
+            <i class="fa-solid fa-arrow-left"></i> Regresar
+        </a>
+    </div>
+
+    {{ form_start(form, { 'attr': { 'class': 'task-form' } }) }}
+        <div class="form-group">
+            {{ form_label(form.title, 'Título') }}
+            {{ form_widget(form.title, { 'attr': { 'placeholder': 'Ingrese un título' } }) }}
+            {{ form_errors(form.title) }}
+        </div>
+
+        <div class="form-group full-width">
+            {{ form_label(form.description, 'Descripción') }}
+            {{ form_widget(form.description, { 'attr': { 'placeholder': 'Ingrese una descripción' } }) }}
+            {{ form_errors(form.description) }}
+        </div>
+
+        <div class="form-group completed">
+            {{ form_widget(form.isCompleted) }}
+            {{ form_label(form.isCompleted, '¿Completada?') }}
+            {{ form_errors(form.isCompleted) }}
+        </div>
+
+        <div class="form-actions">
+            <a href="{{ path('app_task_index') }}" class="btn-cancel">Cancelar</a>
+            <button type="submit" class="btn-submit">Actualizar Tarea</button>
+        </div>
+    {{ form_end(form) }}
+
+    <div class="form-actions btn-delete" style="justify-content: flex-start; margin-top: 1rem;">
+        {{ include('task/_delete_form.html.twig') }}
+    </div>
+</div>
+{% endblock %}

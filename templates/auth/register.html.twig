@@ -1,0 +1,57 @@
+{% extends 'auth/auth.html.twig' %}
+
+{% block title %}Registrarme{% endblock %}
+
+{% block content %}
+<div class="header animate-fadeInDown">
+    <h2>Crear Cuenta<span style="color:#4da6ff;">.</span></h2>
+    <p>Ya tienes una cuenta? <a href="{{ path('app_login') }}">Iniciar sesión</a></p>
+</div>
+
+{% if error %}
+    <div class="div-error">{{ error }}</div>
+{% endif %}
+
+<form method="post" class="animate-fadeInUp">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('register') }}">
+
+    <div class="form-group">
+        <input type="email" name="email" placeholder="Email" required autofocus>
+        <i class="fa-solid fa-envelope"></i>
+    </div>
+
+    <div class="form-group">
+        <input type="password" name="password" placeholder="Contraseña" id="passwordRegister" required>
+        <i class="icon-password fa-regular fa-eye" id="togglePasswordRegister"></i>
+    </div>
+
+    <div class="form-group">
+        <input type="password" name="confirmPassword" placeholder="Confirmar contraseña" id="confirmPasswordRegister" required>
+        <i class="icon-password fa-regular fa-eye" id="toggleConfirmPasswordRegister"></i>
+    </div>
+
+    <div class="btns">
+        <a href="{{ path('app_login') }}" class="btn btn-cancel">Cancelar</a>
+        <button type="submit" class="btn btn-create">Crear cuenta</button>
+    </div>
+</form>
+
+<script>
+    const toggle = (iconId, inputId) => {
+        const icon = document.getElementById(iconId);
+        const input = document.getElementById(inputId);
+        icon.addEventListener('click', () => {
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        });
+    }
+
+    toggle('togglePasswordRegister', 'passwordRegister');
+    toggle('toggleConfirmPasswordRegister', 'confirmPasswordRegister');
+</script>
+{% endblock %}
