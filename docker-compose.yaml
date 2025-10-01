@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: task-app
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: "mysql://root:root@db:3306/task_app_prueba?serverVersion=8.0"
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www/html
+    networks:
+      - task-network
+
+  db:
+    image: mysql:8.0
+    container_name: task-app-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: task_app_prueba
+    ports:
+      - "3306:3306"
+    volumes:
+      - database_data:/var/lib/mysql
+    networks:
+      - task-network
+
+networks:
+  task-network:
+
+volumes:
+  database_data:
